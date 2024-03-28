@@ -105,3 +105,13 @@ a {
     color-scheme: dark;
   }
 }
+
+
+.historyList::-webkit-scrollbar {
+  display: none;
+}
+
+.historyList {
+  -ms-overflow-style: none; 
+  scrollbar-width: none; 
+}

@@ -1,11 +1,18 @@
 "use client";
 
 import {  useJsApiLoader } from "@react-google-maps/api";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import Map from "./components/map";
+import { useDispatch } from "react-redux";
+import { fetchHistory } from "@/redux/features/history/historySlice";
 
 export default function Home() {
   const libraries = useMemo(() => ["places"], []);
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    dispatch(fetchHistory());
+  })
 
   const { isLoaded } = useJsApiLoader({
     id: "google-map-script",
