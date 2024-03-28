@@ -32,5 +32,5 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Upon opening the page you will be able to access the search bar as well as list of search histories and favourites.
 
-For no hassle of setup, the demo can be viewed here, [https://maybank-frontend-assessment-two.vercel.app/](https://maybank-frontend-assessment-two.vercel.app/).
+For no hassle of setup, the demo can be viewed here, [https://maybank-frontend-assessment-two.vercel.app/](https://maybank-frontend-assessment-two.vercel.app/). Please do ensure that the backend development server is running locally to ensure that the application is running as intended.
 
