@@ -96,7 +96,7 @@ const HistoryList = () => {
                     </ListItemAvatar>
                     <ListItemText
                       primary={history.description}
-                      primaryTypographyProps={{ fontSize: "12px" }}
+                      primaryTypographyProps={{ fontSize: "12px", paddingRight: '20px' }}
                     />
                   </ListItem>
                 )
