@@ -2,6 +2,7 @@ import { GoogleMap, Marker } from "@react-google-maps/api";
 import SearchBar from "./searchbar";
 import { useMemo, useState } from "react";
 import HistoryList from "./historyList";
+import FavouriteList from "./favouriteList";
 
 const Map = () => {
     const center = useMemo(() => ({ lat: 4.2105, lng: 101.9758 }), []);
@@ -22,6 +23,7 @@ const Map = () => {
           setSelected={setSelected}
         />
         <HistoryList/>  
+        <FavouriteList/>
         <GoogleMap
           zoom={7}
           center={selected ? selected : center}

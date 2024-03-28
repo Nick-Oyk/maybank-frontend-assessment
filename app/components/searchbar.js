@@ -59,7 +59,7 @@ const SearchBar = ({ setSelected }) => {
             {...params}
             label="Search"
             fullWidth
-            onInput={handleChange}
+            onInput={(event)=> handleChange(event)}
             sx={{ borderRadius: 20 }}
           />
         )}

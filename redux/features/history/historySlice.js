@@ -25,16 +25,20 @@ export const saveHistory = createAsyncThunk(
   }
 );
 
-export const deleteHistory = createAsyncThunk(
-  "history/delete",
-  async (id) => {
-    console.log(`${BASE_URL}/${id}`)
-    const response = await axios.delete(`${BASE_URL}/${id}`);
+export const deleteHistory = createAsyncThunk("history/delete", async (id) => {
+  const response = await axios.delete(`${BASE_URL}/${id}`);
 
-    console.log(response)
-    return await response.data;
-  }
-);
+  return await response.data;
+});
+
+export const updateHistory = createAsyncThunk("history/update", async (id) => {
+  const response = await axios.patch(`${BASE_URL}/${id}`, {
+    headers: { "Content-Type": "application/json" },
+    isFavourite: true,
+  });
+
+  return await response.data;
+});
 
 export const historySlice = createSlice({
   name: "histories",
@@ -66,10 +70,31 @@ export const historySlice = createSlice({
       state.status = "loading";
     });
     builder.addCase(deleteHistory.fulfilled, (state, action) => {
-      state.data = state.data.filter((item) => item.id !== action.payload.id);
-      state.status = "success";
+      const index = state.data.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.data[index] = action.payload;
+        state.status = "success";
+      }
     });
     builder.addCase(deleteHistory.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message;
+    });
+    builder.addCase(updateHistory.pending, (state, action) => {
+      state.status = "loading";
+    });
+    builder.addCase(updateHistory.fulfilled, (state, action) => {
+      const index = state.data.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (index !== -1) {
+        state.data[index] = action.payload;
+        state.status = "success";
+      }
+    });
+    builder.addCase(updateHistory.rejected, (state, action) => {
       state.status = "failed";
       state.error = action.error.message;
     });
